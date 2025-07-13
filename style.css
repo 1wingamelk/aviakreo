@@ -5,7 +5,7 @@ body {
     align-items: center;
     min-height: 100vh;
     background-color: #171940;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Anton', sans-serif; /* Изменен шрифт */
     color: #ffffff;
     overflow: hidden;
     user-select: none;
@@ -13,12 +13,12 @@ body {
 
 .container {
     display: flex;
-    flex-direction: column; /* По умолчанию: элементы stacked по вертикали */
+    flex-direction: column;
     align-items: center;
     gap: 20px;
     padding: 20px;
     width: 100%;
-    max-width: 500px; /* Ограничим ширину для портретного режима */
+    max-width: 500px;
     box-sizing: border-box;
     min-height: 100vh;
     justify-content: center;
@@ -101,7 +101,7 @@ body {
 .play-button {
     padding: 15px 40px;
     font-size: 1.8em;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Anton', sans-serif; /* Изменен шрифт */
     font-weight: 700;
     color: #ffffff;
     border: none;
@@ -218,26 +218,35 @@ body {
     /* --- Новые стили для рекламных блоков --- */
     .promo-text-top,
     .promo-text-bottom {
-        display: flex; /* Чтобы иконка и текст были в ряд */
-        align-items: center;
-        gap: 8px; /* Расстояние между иконкой и текстом */
-        font-size: 1.1em; /* Размер шрифта для рекламного текста */
-        font-weight: 400;
+        display: flex;
+        align-items: center; /* Выравнивание иконки и текста по центру */
+        gap: 8px;
+        font-size: 1.5em; /* Увеличенный размер шрифта для рекламного текста */
+        font-weight: 400; /* Anton уже жирный */
         text-align: center;
-        background-color: rgba(0, 0, 0, 0.4); /* Полупрозрачная подложка */
-        padding: 8px 15px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Легкая тень */
-        margin-bottom: 15px; /* Отступ от "NEXT ROUND" */
-        white-space: nowrap; /* Чтобы текст не переносился на новую строку */
-        flex-shrink: 0; /* Не сжимать эти блоки */
+        background-color: rgba(0, 0, 0, 0.6); /* Темнее подложка */
+        padding: 12px 20px; /* Увеличенный padding для подложки */
+        border-radius: 12px; /* Больше скругление */
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Более выраженная тень */
+        margin-bottom: 20px; /* Увеличим отступ от "NEXT ROUND" */
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 
     .promo-text-bottom {
-        margin-top: 15px; /* Отступ от кнопки Play */
-        margin-bottom: 0; /* Убираем нижний отступ */
+        margin-top: 20px; /* Увеличим отступ от кнопки Play */
+        margin-bottom: 0;
     }
     
+    .tg-icon {
+        width: 30px;
+        height: 30px;
+        vertical-align: middle; /* Стандартное выравнивание по центру */
+        /* Если нужно точное пиксельное смещение, можно использовать: */
+        /* position: relative; top: 2px; или transform: translateY(2px); */
+        /* Но 'middle' обычно достаточно для центрирования по высоте строки */
+    }
+
     /* Скрываем рекламные блоки в портретном режиме */
     .promo-text-top,
     .promo-text-bottom {
@@ -247,13 +256,7 @@ body {
     @media (min-aspect-ratio: 16/9) and (min-width: 600px) {
         .promo-text-top,
         .promo-text-bottom {
-            display: flex; /* Снова делаем их видимыми */
+            display: flex;
         }
-    }
-
-    .tg-icon {
-        width: 30px; /* Размер иконки Telegram */
-        height: 30px;
-        vertical-align: middle; /* Выравнивание по центру текста */
     }
 }
