@@ -18,8 +18,12 @@ body {
     gap: 20px;
     padding: 20px;
     width: 100%; /* Занимает всю доступную ширину */
-    max-width: 500px; /* Ограничим ширину для портретного режима, чтобы не выглядело слишком растянутым */
-    box-sizing: border-box; /* Учитываем padding */
+    max-width: 500px; /* Ограничим ширину для портретного режима */
+    box-sizing: border-box;
+    /* Добавляем минимальную высоту для контейнера, чтобы он занимал доступное пространство,
+       используем vh (viewport height) для адаптивности */
+    min-height: 100vh; 
+    justify-content: center; /* Центрируем содержимое по вертикали в портретном режиме */
 }
 
 .round-indicator {
@@ -28,17 +32,17 @@ body {
     color: #fff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     margin-bottom: 10px;
-    text-align: center; /* Центрируем текст */
+    text-align: center;
 }
 
 .circle-wrapper {
     position: relative;
-    width: 300px;
+    width: 300px; /* Размер круга по умолчанию */
     height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-shrink: 0; /* Не сжимать круг */
+    flex-shrink: 0;
 }
 
 .rotating-circle {
@@ -53,7 +57,7 @@ body {
 
 .plane-image {
     position: relative;
-    width: 150px;
+    width: 150px; /* Размер самолета по умолчанию */
     height: 150px;
     object-fit: contain;
     z-index: 1;
@@ -155,29 +159,25 @@ body {
 }
 
 /* --- Медиа-запрос для альбомной ориентации / широких экранов --- */
-@media (min-width: 768px) {
-    body {
-        /* При широком экране, body также становится flex-контейнером для .container */
-        flex-direction: row; /* На случай, если body не был flex по горизонтали */
-    }
-
+/* Используем min-aspect-ratio для определения альбомной ориентации */
+@media (min-aspect-ratio: 16/9) and (min-width: 600px) { /* Активируется для широких экранов с альбомной ориентацией */
     .container {
         flex-direction: row; /* Элементы теперь расположены горизонтально */
-        justify-content: center; /* Центрируем по горизонтали */
-        align-items: center; /* Центрируем по вертикали */
-        gap: 50px; /* Увеличим расстояние между секциями */
-        padding: 40px; /* Увеличим отступы */
-        max-width: none; /* Убираем ограничение ширины */
+        justify-content: center;
+        align-items: center;
+        gap: 40px; /* Увеличим расстояние между секциями */
+        padding: 20px;
         height: 100vh; /* Занимает всю высоту */
+        width: 100%; /* Занимает всю ширину */
+        max-width: none; /* Убираем ограничение ширины */
     }
 
-    /* Создадим отдельные блоки для левой и правой части */
     .left-side-layout {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        flex-shrink: 0; /* Не сжимать эту секцию */
+        flex-shrink: 0;
     }
 
     .right-side-layout {
@@ -185,36 +185,36 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 20px; /* Отступы между элементами справа */
-        flex-grow: 1; /* Позволим этой секции занимать доступное пространство */
+        gap: 15px; /* Отступы между элементами справа */
+        flex-grow: 1;
     }
 
-    .round-indicator {
-        order: -1; /* Перемещаем наверх внутри правой секции */
-        margin-bottom: 0; /* Убираем нижний отступ */
-    }
-
-    /* Переместим элементы в нужные контейнеры в HTML, чтобы это работало */
-    /* Пока в CSS это не поменять, но это подсказка, как структурировать HTML */
-    /* для лучшего контроля, если потребуется более сложная адаптация */
-
-    /* Уменьшим круг и самолет для альбомного режима, чтобы поместились */
+    /* Уменьшим размеры элементов для горизонтального режима, чтобы они поместились */
     .circle-wrapper {
-        width: 250px; /* Меньше круг */
-        height: 250px;
+        width: 200px; /* Уменьшенный размер круга */
+        height: 200px;
     }
 
     .plane-image {
-        width: 125px; /* Меньше самолет */
-        height: 125px;
+        width: 100px; /* Уменьшенный размер самолета */
+        height: 100px;
+    }
+
+    .round-indicator {
+        font-size: 1.6em; /* Меньше шрифт */
+        margin-bottom: 0;
     }
 
     .editable-value {
-        font-size: 3.5em; /* Можно немного увеличить */
+        font-size: 2.8em; /* Меньше шрифт */
     }
 
     .play-button {
-        font-size: 1.6em; /* Можно немного уменьшить */
-        padding: 12px 35px;
+        font-size: 1.4em; /* Меньше шрифт */
+        padding: 10px 30px;
+    }
+
+    .cooldown-timer {
+        font-size: 1em; /* Меньше шрифт */
     }
 }
