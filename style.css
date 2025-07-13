@@ -206,7 +206,6 @@ body {
     .round-indicator {
         font-size: 1.6em;
         margin-bottom: 0;
-        margin-top: 20px; /* НОВОЕ: Опускаем "NEXT ROUND" ниже */
     }
 
     .editable-value {
@@ -222,7 +221,7 @@ body {
         font-size: 1em;
     }
 
-    /* --- Стили для рекламных блоков --- */
+    /* --- Стили для рекламных блоков (откат к версии без подложки, простой шрифт, белый цвет) --- */
     .promo-text-top,
     .promo-text-bottom {
         display: flex;
@@ -230,9 +229,10 @@ body {
         gap: 8px;
         font-size: 1.1em; /* Простой размер шрифта */
         font-family: sans-serif; /* Простой системный шрифт */
-        font-weight: 700; /* НОВОЕ: Жирный шрифт */
+        font-weight: 400; /* Нежирный */
         text-align: center;
         color: #ffffff; /* Полностью белый цвет */
+        /* Без подложки */
         background-color: transparent;
         padding: 0;
         border-radius: 0;
@@ -240,6 +240,7 @@ body {
         white-space: nowrap;
         flex-shrink: 0;
         
+        /* Позиционирование относительно right-side-layout */
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
