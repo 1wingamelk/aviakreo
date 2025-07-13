@@ -190,7 +190,7 @@ body {
         /* Увеличиваем внутренний отступ для right-side-layout,
            чтобы рекламные блоки могли разместиться без перекрытия */
         padding-top: 40px; /* Отступ сверху для верхнего промо-блока */
-        padding-bottom: 70px; /* УВЕЛИЧЕННЫЙ отступ снизу для нижнего промо-блока */
+        padding-bottom: 90px; /* УВЕЛИЧЕННЫЙ отступ снизу для нижнего промо-блока */
         box-sizing: border-box; /* Чтобы padding не увеличивал общую высоту */
     }
 
@@ -233,7 +233,7 @@ body {
         font-family: sans-serif; /* Простой системный шрифт */
         font-weight: 400; /* Нежирный */
         text-align: center;
-        color: #ffffff; /* **Теперь полностью белый цвет** */
+        color: #ffffff; /* Полностью белый цвет */
         /* Убираем все стили подложки */
         background-color: transparent; /* Без фона */
         padding: 0; /* Без padding */
@@ -256,9 +256,39 @@ body {
     }
     
     .promo-text-bottom {
-        bottom: 15px; /* Отступ снизу от right-side-layout */
+        bottom: 15px; /* Этот отступ теперь не 15px от низа right-side-layout,
+                        а 15px от общего низа контейнера,
+                        так как padding-bottom right-side-layout сильно увеличен.
+                        Если нужно прямо к низу экрана, используем vh или позиционируем относительно body/container.
+                        Давайте сделаем его 15px от края *контейнера* в горизонтальном режиме,
+                        чтобы он был в самом низу. */
+        bottom: 0; /* Или можно использовать 0px, если нужно прямо прижать к низу контейнера */
+        transform: translateX(-50%) translateY(100%); /* Передвигаем его полностью вниз */
+        /* Нам нужно будет немного пересмотреть, если оно все равно наезжает.
+           Лучший способ - позиционировать его относительно всего .container, а не .right-side-layout.
+           Но это сложнее, т.к. promo-text-bottom находится внутри right-side-layout. */
     }
 
+    /* Альтернативный подход для promo-text-bottom, чтобы он был "в самом низу" */
+    /* Если он должен быть в самом низу экрана, то он должен быть абсолютным относительно .container или body */
+    /* Но по вашей структуре он внутри right-side-layout, поэтому: */
+    
+    /* УДАЛИТЕ ВСЕ СТРОКИ promo-text-bottom ВЫШЕ И ВМЕСТО НИХ ИСПОЛЬЗУЙТЕ ЭТИ */
+    .promo-text-bottom {
+        position: absolute;
+        bottom: 15px; /* Увеличиваем отступ от низа right-side-layout */
+        left: 50%;
+        transform: translateX(-50%);
+        /* Остальные стили promo-text-bottom (font-size, color, etc.) остаются прежними */
+    }
+    /* Возвращаем padding-bottom right-side-layout к 40px, если promo-text-bottom будет позиционироваться
+       только за счет своего bottom: 15px, чтобы не было слишком много пустого места */
+    .right-side-layout {
+        /* ... другие стили ... */
+        padding-bottom: 40px; /* Вернем, если промо-блок позиционируется только своим bottom */
+    }
+    /* КОНЕЦ АЛЬТЕРНАТИВЫ */
+    
     .tg-icon {
         width: 30px; /* Размер иконки Telegram */
         height: 30px;
