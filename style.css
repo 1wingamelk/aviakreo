@@ -5,7 +5,7 @@ body {
     align-items: center;
     min-height: 100vh;
     background-color: #171940;
-    font-family: 'Orbitron', sans-serif; /* Откатил шрифт на Orbitron */
+    font-family: 'Orbitron', sans-serif;
     color: #ffffff;
     overflow: hidden;
     user-select: none;
@@ -101,7 +101,7 @@ body {
 .play-button {
     padding: 15px 40px;
     font-size: 1.8em;
-    font-family: 'Orbitron', sans-serif; /* Откатил шрифт на Orbitron */
+    font-family: 'Orbitron', sans-serif;
     font-weight: 700;
     color: #ffffff;
     border: none;
@@ -162,7 +162,7 @@ body {
         flex-direction: row; /* Элементы теперь расположены горизонтально */
         justify-content: center;
         align-items: center;
-        gap: 40px; /* Вернул стандартный отступ */
+        gap: 15px; /* Уменьшаем отступ, чтобы сблизить части */
         padding: 20px;
         height: 100vh;
         width: 100%;
@@ -176,7 +176,6 @@ body {
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        margin-right: 0; /* Убрал отрицательный отступ */
     }
 
     .right-side-layout {
@@ -184,41 +183,38 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 15px; /* Вернул стандартный зазор */
+        gap: 15px;
         flex-grow: 1;
-        margin-left: 0; /* Убрал отрицательный отступ */
-        padding-top: 0; /* Убрал лишние padding */
-        padding-bottom: 0;
-        height: auto; /* Высота по контенту */
-        position: static; /* Убираем абсолютное позиционирование */
+        height: auto;
+        position: static;
     }
 
     /* Размеры элементов для горизонтального режима, чтобы все поместились */
     .circle-wrapper {
-        width: 200px; /* Вернул к предыдущему размеру */
+        width: 200px;
         height: 200px;
     }
 
     .plane-image {
-        width: 100px; /* Вернул к предыдущему размеру */
+        width: 100px;
         height: 100px;
     }
 
     .round-indicator {
-        font-size: 1.6em; /* Вернул к предыдущему размеру */
+        font-size: 1.6em;
         margin-bottom: 0;
     }
 
     .editable-value {
-        font-size: 2.8em; /* Вернул к предыдущему размеру */
+        font-size: 2.8em;
     }
 
     .play-button {
-        font-size: 1.4em; /* Вернул к предыдущему размеру */
+        font-size: 1.4em;
         padding: 10px 30px;
     }
 
     .cooldown-timer {
-        font-size: 1em; /* Вернул к предыдущему размеру */
+        font-size: 1em;
     }
 }
