@@ -5,7 +5,7 @@ body {
     align-items: center;
     min-height: 100vh;
     background-color: #171940;
-    font-family: 'Anton', sans-serif;
+    font-family: 'Orbitron', sans-serif; /* Откатил шрифт на Orbitron */
     color: #ffffff;
     overflow: hidden;
     user-select: none;
@@ -18,7 +18,7 @@ body {
     gap: 20px;
     padding: 20px;
     width: 100%;
-    max-width: 500px;
+    max-width: 500px; /* Ограничим ширину для портретного режима */
     box-sizing: border-box;
     min-height: 100vh;
     justify-content: center;
@@ -35,7 +35,7 @@ body {
 
 .circle-wrapper {
     position: relative;
-    width: 300px;
+    width: 300px; /* Размер круга по умолчанию */
     height: 300px;
     display: flex;
     justify-content: center;
@@ -55,7 +55,7 @@ body {
 
 .plane-image {
     position: relative;
-    width: 150px;
+    width: 150px; /* Размер самолета по умолчанию */
     height: 150px;
     object-fit: contain;
     z-index: 1;
@@ -101,7 +101,7 @@ body {
 .play-button {
     padding: 15px 40px;
     font-size: 1.8em;
-    font-family: 'Anton', sans-serif;
+    font-family: 'Orbitron', sans-serif; /* Откатил шрифт на Orbitron */
     font-weight: 700;
     color: #ffffff;
     border: none;
@@ -160,14 +160,14 @@ body {
 @media (min-aspect-ratio: 16/9) and (min-width: 600px) {
     .container {
         flex-direction: row; /* Элементы теперь расположены горизонтально */
-        justify-content: center; /* Центрируем по горизонтали */
-        align-items: center; /* Центрируем по вертикали */
-        gap: 0; /* Убираем стандартный зазор, чтобы контролировать его вручную */
+        justify-content: center;
+        align-items: center;
+        gap: 40px; /* Вернул стандартный отступ */
         padding: 20px;
         height: 100vh;
         width: 100%;
         max-width: none;
-        box-sizing: border-box; /* Важно, чтобы padding не выталкивал контент */
+        box-sizing: border-box;
     }
 
     .left-side-layout {
@@ -176,8 +176,7 @@ body {
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        /* Передвигаем левую часть немного влево, чтобы освободить место для центрирования центра */
-        margin-right: -20px; /* Отрицательный отступ для сближения с правой частью */
+        margin-right: 0; /* Убрал отрицательный отступ */
     }
 
     .right-side-layout {
@@ -185,94 +184,41 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 8px; /* Уменьшаем зазор между элементами: Next Round, значение, кнопка, колдаун */
+        gap: 15px; /* Вернул стандартный зазор */
         flex-grow: 1;
-        /* Передвигаем правую часть немного влево, чтобы сблизиться с левой */
-        margin-left: -20px; /* Отрицательный отступ для сближения */
-        padding-top: 5px; /* Небольшой отступ сверху, чтобы центрировать */
-        padding-bottom: 5px; /* Небольшой отступ снизу */
-        height: 100%; /* Чтобы равномерно распределить promo-блоки */
-        position: relative; /* Для абсолютного позиционирования promo-блоков */
+        margin-left: 0; /* Убрал отрицательный отступ */
+        padding-top: 0; /* Убрал лишние padding */
+        padding-bottom: 0;
+        height: auto; /* Высота по контенту */
+        position: static; /* Убираем абсолютное позиционирование */
     }
 
-    /* Уменьшим размеры элементов для горизонтального режима, чтобы все поместились */
+    /* Размеры элементов для горизонтального режима, чтобы все поместились */
     .circle-wrapper {
-        width: 180px; /* Еще уменьшим размер круга */
-        height: 180px;
+        width: 200px; /* Вернул к предыдущему размеру */
+        height: 200px;
     }
 
     .plane-image {
-        width: 90px; /* Еще уменьшим размер самолета */
-        height: 90px;
+        width: 100px; /* Вернул к предыдущему размеру */
+        height: 100px;
     }
 
     .round-indicator {
-        font-size: 1.5em; /* Еще уменьшим шрифт */
+        font-size: 1.6em; /* Вернул к предыдущему размеру */
         margin-bottom: 0;
     }
 
     .editable-value {
-        font-size: 2.6em; /* Еще уменьшим шрифт */
+        font-size: 2.8em; /* Вернул к предыдущему размеру */
     }
 
     .play-button {
-        font-size: 1.3em; /* Еще уменьшим шрифт */
-        padding: 8px 25px; /* Меньший padding */
+        font-size: 1.4em; /* Вернул к предыдущему размеру */
+        padding: 10px 30px;
     }
 
     .cooldown-timer {
-        font-size: 0.9em; /* Еще уменьшим шрифт */
-    }
-
-    /* --- Стили для рекламных блоков (новое позиционирование) --- */
-    .promo-text-top,
-    .promo-text-bottom {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 1.3em; /* Чуть уменьшим, чтобы поместилось */
-        font-weight: 400;
-        text-align: center;
-        background-color: rgba(0, 0, 0, 0.6);
-        padding: 10px 15px; /* Уменьшим padding */
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-        white-space: nowrap;
-        flex-shrink: 0;
-        
-        /* Абсолютное позиционирование для точного контроля */
-        position: absolute; 
-        left: 50%; /* Центрируем по горизонтали */
-        transform: translateX(-50%); /* Корректируем смещение */
-        z-index: 2; /* Поверх всего */
-        width: max-content; /* Ширина по контенту */
-        max-width: 90%; /* Ограничение ширины для безопасности */
-    }
-
-    .promo-text-top {
-        top: 20px; /* Отступ сверху */
-    }
-    
-    .promo-text-bottom {
-        bottom: 20px; /* Отступ снизу */
-    }
-
-    .tg-icon {
-        width: 30px;
-        height: 30px;
-        vertical-align: middle;
-    }
-
-    /* Скрываем рекламные блоки в портретном режиме */
-    .promo-text-top,
-    .promo-text-bottom {
-        display: none;
-    }
-    /* Показываем рекламные блоки только в альбомном режиме */
-    @media (min-aspect-ratio: 16/9) and (min-width: 600px) {
-        .promo-text-top,
-        .promo-text-bottom {
-            display: flex;
-        }
+        font-size: 1em; /* Вернул к предыдущему размеру */
     }
 }
