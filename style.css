@@ -1,0 +1,220 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #171940;
+    font-family: 'Orbitron', sans-serif;
+    color: #ffffff;
+    overflow: hidden;
+    user-select: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* По умолчанию: элементы stacked по вертикали */
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    width: 100%; /* Занимает всю доступную ширину */
+    max-width: 500px; /* Ограничим ширину для портретного режима, чтобы не выглядело слишком растянутым */
+    box-sizing: border-box; /* Учитываем padding */
+}
+
+.round-indicator {
+    font-size: 2em;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
+    text-align: center; /* Центрируем текст */
+}
+
+.circle-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; /* Не сжимать круг */
+}
+
+.rotating-circle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #8A2BE2, #9932CC, #DA70D6);
+    box-shadow: 0 0 30px rgba(138, 43, 226, 0.7);
+    animation: rotate 10s linear infinite;
+}
+
+.plane-image {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    z-index: 1;
+}
+
+.editable-value {
+    font-size: 3em;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    cursor: text;
+    min-width: 120px;
+    text-align: center;
+    padding: 5px 10px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.editable-value:focus {
+    outline: none;
+    border-color: #9932CC;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.loading-dots {
+    display: flex;
+    gap: 5px;
+    font-size: 3em;
+}
+
+.loading-dot {
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.loading-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loading-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.play-button {
+    padding: 15px 40px;
+    font-size: 1.8em;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #8A2BE2, #9932CC, #DA70D6);
+    box-shadow: 0 0 25px rgba(138, 43, 226, 0.9);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.play-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 35px rgba(138, 43, 226, 1);
+}
+
+.play-button:active {
+    transform: translateY(0);
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+}
+
+.play-button:disabled {
+    background: linear-gradient(45deg, #5c2096, #6b2591, #944e92);
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.cooldown-timer {
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.7);
+    height: 1.2em;
+}
+
+/* Анимации */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* --- Медиа-запрос для альбомной ориентации / широких экранов --- */
+@media (min-width: 768px) {
+    body {
+        /* При широком экране, body также становится flex-контейнером для .container */
+        flex-direction: row; /* На случай, если body не был flex по горизонтали */
+    }
+
+    .container {
+        flex-direction: row; /* Элементы теперь расположены горизонтально */
+        justify-content: center; /* Центрируем по горизонтали */
+        align-items: center; /* Центрируем по вертикали */
+        gap: 50px; /* Увеличим расстояние между секциями */
+        padding: 40px; /* Увеличим отступы */
+        max-width: none; /* Убираем ограничение ширины */
+        height: 100vh; /* Занимает всю высоту */
+    }
+
+    /* Создадим отдельные блоки для левой и правой части */
+    .left-side-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0; /* Не сжимать эту секцию */
+    }
+
+    .right-side-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px; /* Отступы между элементами справа */
+        flex-grow: 1; /* Позволим этой секции занимать доступное пространство */
+    }
+
+    .round-indicator {
+        order: -1; /* Перемещаем наверх внутри правой секции */
+        margin-bottom: 0; /* Убираем нижний отступ */
+    }
+
+    /* Переместим элементы в нужные контейнеры в HTML, чтобы это работало */
+    /* Пока в CSS это не поменять, но это подсказка, как структурировать HTML */
+    /* для лучшего контроля, если потребуется более сложная адаптация */
+
+    /* Уменьшим круг и самолет для альбомного режима, чтобы поместились */
+    .circle-wrapper {
+        width: 250px; /* Меньше круг */
+        height: 250px;
+    }
+
+    .plane-image {
+        width: 125px; /* Меньше самолет */
+        height: 125px;
+    }
+
+    .editable-value {
+        font-size: 3.5em; /* Можно немного увеличить */
+    }
+
+    .play-button {
+        font-size: 1.6em; /* Можно немного уменьшить */
+        padding: 12px 35px;
+    }
+}

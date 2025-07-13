@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Самолет Мини-Апп</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="left-side-layout">
+            <div class="circle-wrapper">
+                <div class="rotating-circle"></div>
+                <img src="avia.jpg" alt="Самолет" class="plane-image">
+            </div>
+        </div>
+
+        <div class="right-side-layout">
+            <div class="round-indicator" id="roundIndicator">NEXT ROUND</div>
+            <div class="editable-value" id="editableValue">???</div>
+            <button class="play-button" id="playButton">Play</button>
+            <div class="cooldown-timer" id="cooldownTimer"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
