@@ -193,13 +193,13 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        gap: 15px;
+        justify-content: flex-end; /* Опускаем содержимое блока вниз */
+        gap: 30px; /* Увеличиваем отступ между элементами */
         flex-grow: 1;
-        height: auto;
+        height: 100%; /* Убедитесь, что занимает всю высоту */
         position: relative; /* Должен быть relative для абсолютных детей */
         padding-top: 40px; /* Отступ сверху для верхнего промо-блока */
-        padding-bottom: 120px; /* Отступ снизу для нижнего промо-блока */
+        padding-bottom: 50px; /* Увеличиваем отступ снизу, чтобы опустить блок */
         box-sizing: border-box; /* Чтобы padding не увеличивал общую высоту */
     }
 
