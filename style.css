@@ -162,7 +162,7 @@ body {
         flex-direction: row; /* Элементы теперь расположены горизонтально */
         justify-content: center;
         align-items: center;
-        gap: 15px; /* Уменьшаем отступ, чтобы сблизить части */
+        gap: 15px; /* Отступ между частями */
         padding: 20px;
         height: 100vh;
         width: 100%;
@@ -186,15 +186,13 @@ body {
         gap: 15px;
         flex-grow: 1;
         height: auto;
-        position: static;
-        /* Увеличиваем внутренний отступ для right-side-layout,
-           чтобы рекламные блоки могли разместиться без перекрытия */
-        padding-top: 40px; /* Отступ сверху для верхнего промо-блока */
-        padding-bottom: 90px; /* УВЕЛИЧЕННЫЙ отступ снизу для нижнего промо-блока */
-        box-sizing: border-box; /* Чтобы padding не увеличивал общую высоту */
+        position: relative; /* Обязательно для абсолютного позиционирования children */
+        padding-top: 0; /* Уберем лишний padding, будем позиционировать текст абсолютом */
+        padding-bottom: 0; /* Уберем лишний padding */
+        box-sizing: border-box;
     }
 
-    /* Размеры элементов для горизонтального режима, чтобы все поместились */
+    /* Размеры элементов для горизонтального режима */
     .circle-wrapper {
         width: 200px;
         height: 200px;
@@ -223,88 +221,37 @@ body {
         font-size: 1em;
     }
 
-    /* --- Стили для рекламных блоков --- */
-    .promo-text-top,
-    .promo-text-bottom {
-        display: flex;
-        align-items: center; /* Выравнивание иконки и текста по центру */
-        gap: 8px;
-        font-size: 1.1em; /* Простой размер шрифта */
-        font-family: sans-serif; /* Простой системный шрифт */
-        font-weight: 400; /* Нежирный */
-        text-align: center;
-        color: #ffffff; /* Полностью белый цвет */
-        /* Убираем все стили подложки */
-        background-color: transparent; /* Без фона */
-        padding: 0; /* Без padding */
-        border-radius: 0; /* Без скругления */
-        box-shadow: none; /* Без тени */
-        white-space: nowrap;
-        flex-shrink: 0;
+    /* --- НОВЫЕ СТИЛИ ДЛЯ ВЕРХНЕГО ПРОМО-ТЕКСТА --- */
+    .main-promo-text {
+        display: none; /* Скрыто по умолчанию в портретном режиме */
         
-        /* Позиционируем их относительно right-side-layout */
-        position: absolute; /* Делаем абсолютными, чтобы не влияли на основной поток */
-        left: 50%; /* Центрируем по горизонтали */
-        transform: translateX(-50%); /* Корректируем смещение */
-        z-index: 2; /* Поверх всего */
-        width: max-content; /* Ширина по контенту */
-        max-width: 90%; /* Ограничение ширины для безопасности */
+        /* Стили для альбомного режима */
+        position: absolute; /* Абсолютное позиционирование */
+        top: 15px; /* Отступ от верхнего края right-side-layout */
+        left: 50%; /* Центрирование по горизонтали */
+        transform: translateX(-50%); /* Корректировка для точного центрирования */
+        
+        font-size: 1.3em; /* Размер шрифта */
+        font-weight: 700; /* Жирный шрифт */
+        color: #ffffff; /* Белый цвет */
+        text-align: center;
+        white-space: nowrap; /* Не переносить текст на новую строку */
+        text-transform: uppercase; /* Все буквы заглавные (капсом) */
+        letter-spacing: 1px; /* Небольшой межбуквенный интервал */
+
+        background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачная подложка */
+        padding: 8px 15px; /* Отступы внутри подложки */
+        border-radius: 8px; /* Скругление углов подложки */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); /* Небольшая тень */
+        z-index: 10; /* На всякий случай, чтобы был поверх других элементов */
+        max-width: 90%; /* Ограничить ширину, чтобы не выходил за экран на маленьких дисплеях */
+        box-sizing: border-box; /* Важно для padding и max-width */
     }
 
-    .promo-text-top {
-        top: 15px; /* Отступ сверху от right-side-layout */
-    }
-    
-    .promo-text-bottom {
-        bottom: 15px; /* Этот отступ теперь не 15px от низа right-side-layout,
-                        а 15px от общего низа контейнера,
-                        так как padding-bottom right-side-layout сильно увеличен.
-                        Если нужно прямо к низу экрана, используем vh или позиционируем относительно body/container.
-                        Давайте сделаем его 15px от края *контейнера* в горизонтальном режиме,
-                        чтобы он был в самом низу. */
-        bottom: 0; /* Или можно использовать 0px, если нужно прямо прижать к низу контейнера */
-        transform: translateX(-50%) translateY(100%); /* Передвигаем его полностью вниз */
-        /* Нам нужно будет немного пересмотреть, если оно все равно наезжает.
-           Лучший способ - позиционировать его относительно всего .container, а не .right-side-layout.
-           Но это сложнее, т.к. promo-text-bottom находится внутри right-side-layout. */
-    }
-
-    /* Альтернативный подход для promo-text-bottom, чтобы он был "в самом низу" */
-    /* Если он должен быть в самом низу экрана, то он должен быть абсолютным относительно .container или body */
-    /* Но по вашей структуре он внутри right-side-layout, поэтому: */
-    
-    /* УДАЛИТЕ ВСЕ СТРОКИ promo-text-bottom ВЫШЕ И ВМЕСТО НИХ ИСПОЛЬЗУЙТЕ ЭТИ */
-    .promo-text-bottom {
-        position: absolute;
-        bottom: 15px; /* Увеличиваем отступ от низа right-side-layout */
-        left: 50%;
-        transform: translateX(-50%);
-        /* Остальные стили promo-text-bottom (font-size, color, etc.) остаются прежними */
-    }
-    /* Возвращаем padding-bottom right-side-layout к 40px, если promo-text-bottom будет позиционироваться
-       только за счет своего bottom: 15px, чтобы не было слишком много пустого места */
-    .right-side-layout {
-        /* ... другие стили ... */
-        padding-bottom: 40px; /* Вернем, если промо-блок позиционируется только своим bottom */
-    }
-    /* КОНЕЦ АЛЬТЕРНАТИВЫ */
-    
-    .tg-icon {
-        width: 30px; /* Размер иконки Telegram */
-        height: 30px;
-        vertical-align: middle; /* Выравнивание по центру текста */
-    }
-
-    /* Скрываем рекламные блоки в портретном режиме */
-    .promo-text-top,
-    .promo-text-bottom {
-        display: none;
-    }
-    /* Показываем рекламные блоки только в альбомном режиме */
+    /* Показываем рекламный блок только в альбомном режиме */
     @media (min-aspect-ratio: 16/9) and (min-width: 600px) {
-        .promo-text-top,
-        .promo-text-bottom {
-            display: flex;
+        .main-promo-text {
+            display: block; /* Показываем только в альбомном режиме */
         }
     }
 }
