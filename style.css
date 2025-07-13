@@ -187,10 +187,10 @@ body {
         flex-grow: 1;
         height: auto;
         position: static;
-        /* Добавляем внутренний отступ для right-side-layout,
+        /* Увеличиваем внутренний отступ для right-side-layout,
            чтобы рекламные блоки могли разместиться без перекрытия */
         padding-top: 40px; /* Отступ сверху для верхнего промо-блока */
-        padding-bottom: 40px; /* Отступ снизу для нижнего промо-блока */
+        padding-bottom: 70px; /* УВЕЛИЧЕННЫЙ отступ снизу для нижнего промо-блока */
         box-sizing: border-box; /* Чтобы padding не увеличивал общую высоту */
     }
 
@@ -223,7 +223,7 @@ body {
         font-size: 1em;
     }
 
-    /* --- Стили для рекламных блоков (без подложки, простой шрифт) --- */
+    /* --- Стили для рекламных блоков --- */
     .promo-text-top,
     .promo-text-bottom {
         display: flex;
@@ -233,7 +233,7 @@ body {
         font-family: sans-serif; /* Простой системный шрифт */
         font-weight: 400; /* Нежирный */
         text-align: center;
-        color: rgba(255, 255, 255, 0.7); /* Чуть более приглушенный цвет */
+        color: #ffffff; /* **Теперь полностью белый цвет** */
         /* Убираем все стили подложки */
         background-color: transparent; /* Без фона */
         padding: 0; /* Без padding */
@@ -263,9 +263,6 @@ body {
         width: 30px; /* Размер иконки Telegram */
         height: 30px;
         vertical-align: middle; /* Выравнивание по центру текста */
-        /* Если нужно точное пиксельное смещение, можно использовать: */
-        /* position: relative; top: 2px; или transform: translateY(2px); */
-        /* Но 'middle' обычно достаточно для центрирования по высоте строки */
     }
 
     /* Скрываем рекламные блоки в портретном режиме */
