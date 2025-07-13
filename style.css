@@ -33,6 +33,17 @@ body {
     text-align: center;
 }
 
+.aviamasters-soft { /* New style for AVIAMASTERS SOFT */
+    font-size: 2em; /* Similar to round-indicator */
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px; /* Space below it */
+    text-align: center;
+    display: none; /* Hidden by default in vertical mode */
+}
+
+
 .circle-wrapper {
     position: relative;
     width: 300px; /* Размер круга по умолчанию */
@@ -219,6 +230,13 @@ body {
 
     .cooldown-timer {
         font-size: 1em;
+    }
+
+    .aviamasters-soft { /* Show AVIAMASTERS SOFT in horizontal mode */
+        display: block;
+        font-size: 1.6em; /* Adjust font size for horizontal if needed */
+        margin-bottom: 0;
+        order: -1; /* Place it at the top of the right-side-layout */
     }
 
     /* --- Стили для рекламных блоков (откат к версии без подложки, простой шрифт, белый цвет) --- */
