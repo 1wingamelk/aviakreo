@@ -17,13 +17,11 @@ body {
     align-items: center;
     gap: 20px;
     padding: 20px;
-    width: 100%; /* Занимает всю доступную ширину */
+    width: 100%;
     max-width: 500px; /* Ограничим ширину для портретного режима */
     box-sizing: border-box;
-    /* Добавляем минимальную высоту для контейнера, чтобы он занимал доступное пространство,
-       используем vh (viewport height) для адаптивности */
-    min-height: 100vh; 
-    justify-content: center; /* Центрируем содержимое по вертикали в портретном режиме */
+    min-height: 100vh;
+    justify-content: center;
 }
 
 .round-indicator {
@@ -37,7 +35,7 @@ body {
 
 .circle-wrapper {
     position: relative;
-    width: 300px; /* Размер круга по умолчанию */
+    width: 300px;
     height: 300px;
     display: flex;
     justify-content: center;
@@ -57,7 +55,7 @@ body {
 
 .plane-image {
     position: relative;
-    width: 150px; /* Размер самолета по умолчанию */
+    width: 150px;
     height: 150px;
     object-fit: contain;
     z-index: 1;
@@ -159,17 +157,16 @@ body {
 }
 
 /* --- Медиа-запрос для альбомной ориентации / широких экранов --- */
-/* Используем min-aspect-ratio для определения альбомной ориентации */
-@media (min-aspect-ratio: 16/9) and (min-width: 600px) { /* Активируется для широких экранов с альбомной ориентацией */
+@media (min-aspect-ratio: 16/9) and (min-width: 600px) {
     .container {
-        flex-direction: row; /* Элементы теперь расположены горизонтально */
+        flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 40px; /* Увеличим расстояние между секциями */
+        gap: 40px;
         padding: 20px;
-        height: 100vh; /* Занимает всю высоту */
-        width: 100%; /* Занимает всю ширину */
-        max-width: none; /* Убираем ограничение ширины */
+        height: 100vh;
+        width: 100%;
+        max-width: none;
     }
 
     .left-side-layout {
@@ -185,36 +182,78 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 15px; /* Отступы между элементами справа */
+        gap: 15px;
         flex-grow: 1;
     }
 
-    /* Уменьшим размеры элементов для горизонтального режима, чтобы они поместились */
+    /* Уменьшим размеры элементов для горизонтального режима */
     .circle-wrapper {
-        width: 200px; /* Уменьшенный размер круга */
+        width: 200px;
         height: 200px;
     }
 
     .plane-image {
-        width: 100px; /* Уменьшенный размер самолета */
+        width: 100px;
         height: 100px;
     }
 
     .round-indicator {
-        font-size: 1.6em; /* Меньше шрифт */
+        font-size: 1.6em;
         margin-bottom: 0;
     }
 
     .editable-value {
-        font-size: 2.8em; /* Меньше шрифт */
+        font-size: 2.8em;
     }
 
     .play-button {
-        font-size: 1.4em; /* Меньше шрифт */
+        font-size: 1.4em;
         padding: 10px 30px;
     }
 
     .cooldown-timer {
-        font-size: 1em; /* Меньше шрифт */
+        font-size: 1em;
+    }
+
+    /* --- Новые стили для рекламных блоков --- */
+    .promo-text-top,
+    .promo-text-bottom {
+        display: flex; /* Чтобы иконка и текст были в ряд */
+        align-items: center;
+        gap: 8px; /* Расстояние между иконкой и текстом */
+        font-size: 1.1em; /* Размер шрифта для рекламного текста */
+        font-weight: 400;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.4); /* Полупрозрачная подложка */
+        padding: 8px 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Легкая тень */
+        margin-bottom: 15px; /* Отступ от "NEXT ROUND" */
+        white-space: nowrap; /* Чтобы текст не переносился на новую строку */
+        flex-shrink: 0; /* Не сжимать эти блоки */
+    }
+
+    .promo-text-bottom {
+        margin-top: 15px; /* Отступ от кнопки Play */
+        margin-bottom: 0; /* Убираем нижний отступ */
+    }
+    
+    /* Скрываем рекламные блоки в портретном режиме */
+    .promo-text-top,
+    .promo-text-bottom {
+        display: none;
+    }
+    /* Показываем рекламные блоки только в альбомном режиме */
+    @media (min-aspect-ratio: 16/9) and (min-width: 600px) {
+        .promo-text-top,
+        .promo-text-bottom {
+            display: flex; /* Снова делаем их видимыми */
+        }
+    }
+
+    .tg-icon {
+        width: 30px; /* Размер иконки Telegram */
+        height: 30px;
+        vertical-align: middle; /* Выравнивание по центру текста */
     }
 }
